@@ -28,6 +28,42 @@ object VCHelper {
             return
         }
         setIniVersion(ini, 1)
+
+        ini.add(
+            "RoadSign",
+            "RSFontCN",
+            "未来荧黑 Normal Regular"
+        )
+        ini.add(
+            "RoadSign",
+            "RSFontEN",
+            "未来荧黑 Normal Regular"
+        )
+        ini.add(
+            "RoadSign",
+            "RSSpaceGapCN",
+            "1"
+        )
+        ini.add(
+            "RoadSign",
+            "RSDisableSpaceGapAt",
+            "5"
+        )
+        ini.add(
+            "RoadSign",
+            "RSTextOffsetEN",
+            "0"
+        )
+        ini.add(
+            "RoadSign",
+            "RSTextOffsetDirCN",
+            "0"
+        )
+        ini.add(
+            "RoadSign",
+            "RSTextOffsetNameCN",
+            "0"
+        )
     }
 
     private fun getIniVersion(ini: Ini): Int {

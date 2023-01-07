@@ -1,5 +1,6 @@
 package io.candytechmc.lindongsigngenerator.app.modules.roadsign
 
+import io.candytechmc.lindongsigngenerator.app.conf.AppConfigs
 import io.candytechmc.lindongsigngenerator.app.util.canvas.Canvas
 import io.candytechmc.lindongsigngenerator.arch.graph.drawAlignedString
 import java.awt.Color
@@ -18,7 +19,7 @@ class LDRoadSignCanvas(
     height = 1266
 ) {
 
-    val dirText = if (roadData.direction == 0) {
+    private val dirText = if (roadData.direction == 0) {
         arrayOf("西", "W", "东", "E")
     } else {
         arrayOf("南", "S", "北", "N")
@@ -49,6 +50,19 @@ class LDRoadSignCanvas(
         val rightX = width - leftX
         val centerY = startY + 231
 
+        val cnDirTextY = centerY + AppConfigs.RoadSign.textOffsetDirCN
+        val cnNameTextY = centerY + AppConfigs.RoadSign.textOffsetNameCN
+        val enCenterY = startY + 540 + AppConfigs.RoadSign.textOffsetEN
+
+        val cnRoadName = if (
+            AppConfigs.RoadSign.spaceGapCN <= 0 ||
+            roadData.nameCN.length >= AppConfigs.RoadSign.disableSpaceGapAt
+        ) {
+            roadData.nameCN
+        } else {
+            roadData.nameCN.toCharArray().joinToString(separator = " ".repeat(AppConfigs.RoadSign.spaceGapCN))
+        }
+
         // Backgrounds
         g2.color = themeColor
         g2.fillRect(0, startY, width, 463)
@@ -57,8 +71,8 @@ class LDRoadSignCanvas(
         g2.fillRect(0, startY + 463, width, 154)
 
         // Chinese Road Name
-        g2.font = Font("未来荧黑 Normal Regular", Font.BOLD, 300)
-        g2.drawAlignedString(roadData.nameCN, width / 2, centerY, 1)
+        g2.font = Font(AppConfigs.RoadSign.fontCN, Font.BOLD, 300)
+        g2.drawAlignedString(cnRoadName, width / 2, cnNameTextY, 1)
 
         // Arrows (Or circle)
         val leftIsArrow = type == 0 || atRow == 1
@@ -105,33 +119,33 @@ class LDRoadSignCanvas(
 
         // English Road Name
         g2.color = themeColor
-        g2.font = Font("Arial", Font.BOLD, 120)
-        g2.drawAlignedString(roadData.nameEN, width / 2, startY + 540, 1)
+        g2.font = Font(AppConfigs.RoadSign.fontEN, Font.BOLD, 120)
+        g2.drawAlignedString(roadData.nameEN, width / 2, enCenterY, 1)
 
         // Direction Text
         g2.drawAlignedString(
             dirText[((atRow + type) * 2 + 1) % 4],
             leftX,
-            startY + 540,
+            enCenterY,
             1
         )
         g2.drawAlignedString(
             dirText[((atRow + type) * 2 + 3) % 4],
             rightX,
-            startY + 540,
+            enCenterY,
             1
         )
-        g2.font = Font("未来荧黑 Normal Regular", Font.BOLD, 100)
+        g2.font = Font(AppConfigs.RoadSign.fontCN, Font.BOLD, 100)
         g2.drawAlignedString(
             dirText[((atRow + type) * 2) % 4],
             leftTextX,
-            centerY,
+            cnDirTextY,
             1
         )
         g2.drawAlignedString(
             dirText[((atRow + type) * 2 + 2) % 4],
             rightTextX,
-            centerY,
+            cnDirTextY,
             1
         )
     }
