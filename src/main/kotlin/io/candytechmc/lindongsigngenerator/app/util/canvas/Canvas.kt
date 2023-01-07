@@ -1,8 +1,6 @@
 package io.candytechmc.lindongsigngenerator.app.util.canvas
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import java.awt.Graphics2D
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
@@ -17,18 +15,18 @@ abstract class Canvas(
     val height: Int
 ) {
 
-    val bufferedImage by lazy { BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB) }
+    private val bufferedImage: BufferedImage by lazy { BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB) }
 
-    val g2 by lazy { bufferedImage.createGraphics() }
+    val g2: Graphics2D by lazy {
+        bufferedImage.createGraphics().also {
+            it.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON)
+        }
+    }
 
     abstract fun onDraw()
 
     fun outputTo(file: File) {
-        CoroutineScope(Dispatchers.IO).launch {
-            onDraw()
-            ImageIO.write(bufferedImage, "png", file)
-        }
+        onDraw()
+        ImageIO.write(bufferedImage, "png", file)
     }
-
-
 }
