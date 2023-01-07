@@ -1,3 +1,5 @@
+package io.candytechmc.lindongsigngenerator
+
 fun main(args: Array<String>) {
     println("Hello World!")
 

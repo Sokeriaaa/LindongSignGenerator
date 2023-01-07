@@ -5,8 +5,8 @@ plugins {
     application
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+group = "io.candytechmc.lindongsigngenerator"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
@@ -14,6 +14,9 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation("org.ini4j:ini4j:0.5.4")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.10")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 }
 
 tasks.test {
