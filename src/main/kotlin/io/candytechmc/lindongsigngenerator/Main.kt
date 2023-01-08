@@ -8,6 +8,7 @@ import java.io.File
 
 fun main() {
     println("临东道路标识牌生成器")
+    println("版本号：${AppConfigs.version}")
     println("程序设计：Sokeriaaa")
 
     VCHelper.handleConfVersion()

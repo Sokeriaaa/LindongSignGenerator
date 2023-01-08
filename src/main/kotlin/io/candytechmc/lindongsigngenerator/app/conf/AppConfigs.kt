@@ -11,6 +11,8 @@ import org.ini4j.Ini
  */
 object AppConfigs {
 
+    const val version: String = "0.1.0"
+
     private val ini: Ini by lazy {
         val file = FileHelper.getOrCreate("configs/conf.ini")
         IniHelper.readIniFromFile(file) ?: error("读取配置文件失败！")
