@@ -1,10 +1,7 @@
 package io.candytechmc.lindongsigngenerator.app.modules.roadsign.io
 
 import io.candytechmc.lindongsigngenerator.app.modules.roadsign.LDRoadData
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileReader
-import java.io.IOException
+import java.io.*
 
 /**
  * IO Helper
@@ -16,11 +13,9 @@ object LDRoadSignIOHelper {
     fun readData(): List<LDRoadData> {
         var reader: BufferedReader? = null
         try {
-            reader = BufferedReader(
-                FileReader(
-                    File("data/roadsign/roads.txt")
-                )
-            )
+            val fis = FileInputStream(File("data/roadsign/roads.txt"))
+            val isr = InputStreamReader(fis, "UTF-8")
+            reader = BufferedReader(isr)
             val list = mutableListOf<LDRoadData>()
             while (true) {
                 val line = reader.readLine() ?: break
