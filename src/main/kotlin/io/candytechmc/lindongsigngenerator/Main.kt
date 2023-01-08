@@ -1,5 +1,6 @@
 package io.candytechmc.lindongsigngenerator
 
+import io.candytechmc.lindongsigngenerator.app.conf.AppConfigs
 import io.candytechmc.lindongsigngenerator.app.modules.roadsign.LDRoadSignCanvas
 import io.candytechmc.lindongsigngenerator.app.modules.roadsign.io.LDRoadSignIOHelper
 import io.candytechmc.lindongsigngenerator.app.vc.VCHelper
@@ -17,31 +18,43 @@ fun main() {
     }
 
     val roadList = LDRoadSignIOHelper.readData()
+    val size = roadList.size
+    println()
+    println("已读取到 $size 条道路数据，即将开始生成图片。。。")
+    println()
 
-    roadList.forEach {
+    roadList.forEachIndexed { index, roadData ->
+        println("正在生成第 ${index + 1} / $size 个 （${roadData.nameCN}）")
         val canvas1 = LDRoadSignCanvas(
-            roadData = it,
+            roadData = roadData,
             type = 0
         )
         val canvas2 = LDRoadSignCanvas(
-            roadData = it,
+            roadData = roadData,
             type = 1
         )
         val canvas3 = LDRoadSignCanvas(
-            roadData = it,
+            roadData = roadData,
             type = 2
         )
 
-        val fileRoadName = it.nameEN.replace(" ", "").lowercase()
+        val fileRoadName = roadData.nameEN.replace(" ", "").lowercase()
 
         canvas1.outputTo(
-            File("output/lupai_${fileRoadName}.png")
+            file = File("output/lupai_${fileRoadName}.png"),
+            scaleWidth = AppConfigs.RoadSign.outputWidth,
+            scaleHeight = AppConfigs.RoadSign.outputHeight
         )
         canvas2.outputTo(
-            File("output/lupai_${fileRoadName}_${if (it.direction == 0) "e" else "n"}.png")
+            file = File("output/lupai_${fileRoadName}_${if (roadData.direction == 0) "e" else "n"}.png"),
+            scaleWidth = AppConfigs.RoadSign.outputWidth,
+            scaleHeight = AppConfigs.RoadSign.outputHeight
         )
         canvas3.outputTo(
-            File("output/lupai_${fileRoadName}_${if (it.direction == 0) "w" else "s"}.png")
+            file = File("output/lupai_${fileRoadName}_${if (roadData.direction == 0) "w" else "s"}.png"),
+            scaleWidth = AppConfigs.RoadSign.outputWidth,
+            scaleHeight = AppConfigs.RoadSign.outputHeight
         )
     }
+    println("所有标牌已生成完毕，感谢使用此程序哦~")
 }

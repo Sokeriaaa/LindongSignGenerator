@@ -64,6 +64,16 @@ object VCHelper {
             "RSTextOffsetNameCN",
             "0"
         )
+        ini.add(
+            "RoadSign",
+            "RSOutputWidth",
+            "2592"
+        )
+        ini.add(
+            "RoadSign",
+            "RSOutputHeight",
+            "1266"
+        )
     }
 
     private fun getIniVersion(ini: Ini): Int {

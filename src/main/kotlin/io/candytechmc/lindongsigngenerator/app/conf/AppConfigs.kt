@@ -25,6 +25,8 @@ object AppConfigs {
         val textOffsetEN: Int by lazy { ini["RoadSign", "RSTextOffsetEN"].toIntOrNull() ?: 0 }
         val textOffsetDirCN: Int by lazy { ini["RoadSign", "RSTextOffsetDirCN"].toIntOrNull() ?: 0 }
         val textOffsetNameCN: Int by lazy { ini["RoadSign", "RSTextOffsetNameCN"].toIntOrNull() ?: 0 }
+        val outputWidth: Int by lazy { ini["RoadSign", "RSOutputWidth"].toIntOrNull() ?: 0 }
+        val outputHeight: Int by lazy { ini["RoadSign", "RSOutputHeight"].toIntOrNull() ?: 0 }
 
     }
 

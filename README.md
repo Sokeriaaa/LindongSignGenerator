@@ -27,6 +27,8 @@
 | RSTextOffsetEN      | 英文路名垂直偏移像素（包括方向的英文，正数向下，负数向上）          |
 | RSTextOffsetDirCN   | 中文方向名偏移像素（东西南北，正数向下，负数向上）              |
 | RSTextOffsetNameCN  | 中文道路名偏移像素（正数向下，负数向上）                   |
+| RSOutputWidth       | 将输出图像的宽度缩放到此值（单位像素）                    |
+| RSOutputHeight      | 将输出图像的高度缩放到此值（单位像素）                    |
 
 ### data文件夹
 

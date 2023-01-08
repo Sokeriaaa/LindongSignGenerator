@@ -25,8 +25,20 @@ abstract class Canvas(
 
     abstract fun onDraw()
 
-    fun outputTo(file: File) {
+    fun outputTo(
+        file: File,
+        scaleWidth: Int = width,
+        scaleHeight: Int = height
+    ) {
         onDraw()
-        ImageIO.write(bufferedImage, "png", file)
+        val outputImage: BufferedImage = if (scaleWidth == width && scaleHeight == height) {
+            bufferedImage
+        } else {
+            val scaledImage = bufferedImage.getScaledInstance(scaleWidth, scaleHeight, BufferedImage.TYPE_INT_ARGB)
+            BufferedImage(scaleWidth, scaleHeight, BufferedImage.TYPE_INT_ARGB).also {
+                it.createGraphics().drawImage(scaledImage, 0, 0, null)
+            }
+        }
+        ImageIO.write(outputImage, "png", file)
     }
 }
