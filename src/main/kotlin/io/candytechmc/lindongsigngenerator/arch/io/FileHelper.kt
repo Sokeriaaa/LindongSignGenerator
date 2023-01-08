@@ -10,10 +10,12 @@ import java.io.File
 object FileHelper {
 
     fun getOrCreate(
-        filePath: String
+        filePath: String,
+        onFileCreated: (File) -> Unit = {}
     ): File = File(filePath).also {
         if (!it.exists()) {
             it.createNewFile()
+            onFileCreated(it)
         }
     }
 

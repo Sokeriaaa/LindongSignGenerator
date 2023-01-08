@@ -5,6 +5,7 @@ import io.candytechmc.lindongsigngenerator.arch.io.IniEntry
 import io.candytechmc.lindongsigngenerator.arch.io.IniHelper
 import io.candytechmc.lindongsigngenerator.arch.io.IniHelper.add
 import org.ini4j.Ini
+import java.io.File
 
 /**
  * Configs VC
@@ -14,7 +15,15 @@ import org.ini4j.Ini
 object VCHelper {
 
     fun handleConfVersion(): Int {
-        val file = FileHelper.getOrCreate("configs/conf.ini")
+        val confFolder = File("configs/")
+        if (!confFolder.exists()) {
+            confFolder.mkdirs()
+        }
+
+        val file = FileHelper.getOrCreate("configs/conf.ini") {
+            println()
+            println("注意：配置文件conf.ini不存在或损坏，已重新生成。")
+        }
         val ini = IniHelper.readIniFromFile(file) ?: return -1
 
         updater0to1(ini)
