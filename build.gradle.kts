@@ -27,6 +27,22 @@ tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+tasks.jar {
+    enabled = true
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    manifest {
+        attributes(mapOf("Main-Class" to "io.candytechmc.lindongsigngenerator.MainKt"))
+    }
+    from(
+        configurations.runtimeClasspath.get().map {
+            if (it.isDirectory) it else zipTree(it)
+        }
+    )
+    val sourcesMain = sourceSets.main.get()
+    sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }
+    from(sourcesMain.output)
+}
+
 application {
     mainClass.set("MainKt")
 }
