@@ -1,4 +1,4 @@
-package io.candytechmc.lindongsigngenerator.app.util.canvas
+package top.candytechmc.lindongsigngenerator.app.util.canvas
 
 import java.awt.Graphics2D
 import java.awt.image.BufferedImage

@@ -1,7 +1,7 @@
-package io.candytechmc.lindongsigngenerator.app.conf
+package top.candytechmc.lindongsigngenerator.app.conf
 
-import io.candytechmc.lindongsigngenerator.arch.io.FileHelper
-import io.candytechmc.lindongsigngenerator.arch.io.IniHelper
+import top.candytechmc.lindongsigngenerator.arch.io.FileHelper
+import top.candytechmc.lindongsigngenerator.arch.io.IniHelper
 import org.ini4j.Ini
 
 /**

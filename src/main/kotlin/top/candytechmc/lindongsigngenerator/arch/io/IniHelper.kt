@@ -1,4 +1,4 @@
-package io.candytechmc.lindongsigngenerator.arch.io
+package top.candytechmc.lindongsigngenerator.arch.io
 
 import org.ini4j.Ini
 import java.io.File

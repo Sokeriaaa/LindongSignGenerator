@@ -1,4 +1,4 @@
-package io.candytechmc.lindongsigngenerator.arch.graph
+package top.candytechmc.lindongsigngenerator.arch.graph
 
 import java.awt.Graphics2D
 

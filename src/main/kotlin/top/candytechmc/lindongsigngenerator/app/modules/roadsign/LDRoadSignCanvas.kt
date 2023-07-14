@@ -1,8 +1,8 @@
-package io.candytechmc.lindongsigngenerator.app.modules.roadsign
+package top.candytechmc.lindongsigngenerator.app.modules.roadsign
 
-import io.candytechmc.lindongsigngenerator.app.conf.AppConfigs
-import io.candytechmc.lindongsigngenerator.app.util.canvas.Canvas
-import io.candytechmc.lindongsigngenerator.arch.graph.drawAlignedString
+import top.candytechmc.lindongsigngenerator.app.conf.AppConfigs
+import top.candytechmc.lindongsigngenerator.app.util.canvas.Canvas
+import top.candytechmc.lindongsigngenerator.arch.graph.drawAlignedString
 import java.awt.Color
 import java.awt.Font
 

@@ -1,9 +1,9 @@
-package io.candytechmc.lindongsigngenerator.app.vc
+package top.candytechmc.lindongsigngenerator.app.vc
 
-import io.candytechmc.lindongsigngenerator.arch.io.FileHelper
-import io.candytechmc.lindongsigngenerator.arch.io.IniEntry
-import io.candytechmc.lindongsigngenerator.arch.io.IniHelper
-import io.candytechmc.lindongsigngenerator.arch.io.IniHelper.add
+import top.candytechmc.lindongsigngenerator.arch.io.FileHelper
+import top.candytechmc.lindongsigngenerator.arch.io.IniEntry
+import top.candytechmc.lindongsigngenerator.arch.io.IniHelper
+import top.candytechmc.lindongsigngenerator.arch.io.IniHelper.add
 import org.ini4j.Ini
 import java.io.File
 

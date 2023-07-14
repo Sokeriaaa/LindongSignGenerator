@@ -1,9 +1,9 @@
-package io.candytechmc.lindongsigngenerator
+package top.candytechmc.lindongsigngenerator
 
-import io.candytechmc.lindongsigngenerator.app.conf.AppConfigs
-import io.candytechmc.lindongsigngenerator.app.modules.roadsign.LDRoadSignCanvas
-import io.candytechmc.lindongsigngenerator.app.modules.roadsign.io.LDRoadSignIOHelper
-import io.candytechmc.lindongsigngenerator.app.vc.VCHelper
+import top.candytechmc.lindongsigngenerator.app.conf.AppConfigs
+import top.candytechmc.lindongsigngenerator.app.modules.roadsign.LDRoadSignCanvas
+import top.candytechmc.lindongsigngenerator.app.modules.roadsign.io.LDRoadSignIOHelper
+import top.candytechmc.lindongsigngenerator.app.vc.VCHelper
 import java.io.File
 
 fun main() {

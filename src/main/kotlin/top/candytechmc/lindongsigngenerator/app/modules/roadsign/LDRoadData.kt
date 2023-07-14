@@ -1,4 +1,4 @@
-package io.candytechmc.lindongsigngenerator.app.modules.roadsign
+package top.candytechmc.lindongsigngenerator.app.modules.roadsign
 
 /**
  * Road Data

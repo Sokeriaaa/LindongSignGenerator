@@ -5,7 +5,7 @@ plugins {
     application
 }
 
-group = "io.candytechmc.lindongsigngenerator"
+group = "top.candytechmc.lindongsigngenerator"
 version = "0.1.1"
 
 repositories {
@@ -31,7 +31,7 @@ tasks.jar {
     enabled = true
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     manifest {
-        attributes(mapOf("Main-Class" to "io.candytechmc.lindongsigngenerator.MainKt"))
+        attributes(mapOf("Main-Class" to "top.candytechmc.lindongsigngenerator.MainKt"))
     }
     from(
         configurations.runtimeClasspath.get().map {
