@@ -13,10 +13,10 @@ import java.awt.Font
  */
 class LDRoadSignCanvas(
     val roadData: LDRoadData,
-    val type: Int
+    val way: Int,
 ) : Canvas(
-    width = 2592,
-    height = 1266
+    width = 2560,
+    height = 1280
 ) {
 
     private val dirText = if (roadData.direction == 0) {
@@ -26,33 +26,19 @@ class LDRoadSignCanvas(
     }
 
     override fun onDraw() {
-        drawTopBar()
-        drawContent(atRow = 0)
-        drawContent(atRow = 1)
+        drawContent(y = 640)
     }
 
-    private fun drawTopBar() {
-        g2.color = Color(166, 166, 166)
-        g2.fillRect(0, 0, width, 32)
-
-        g2.color = Color(255, 192, 0)
-        g2.fillRect(61, 0, 56, 32)
-
-        g2.color = Color(255, 255, 255)
-        g2.fillRect(117, 0, 56, 32)
-    }
-
-    private fun drawContent(atRow: Int) {
+    private fun drawContent(y: Int) {
         val themeColor = Color.decode(roadData.colorText)
-        val startY = 32 + 617 * atRow
 
         val leftX = 180
         val rightX = width - leftX
-        val centerY = startY + 231
+        val centerY = y + 240 + 20
 
         val cnDirTextY = centerY + AppConfigs.RoadSign.textOffsetDirCN
         val cnNameTextY = centerY + AppConfigs.RoadSign.textOffsetNameCN
-        val enCenterY = startY + 540 + AppConfigs.RoadSign.textOffsetEN
+        val enCenterY = y + 540 + AppConfigs.RoadSign.textOffsetEN
 
         val cnRoadName = if (
             AppConfigs.RoadSign.spaceGapCN <= 0 ||
@@ -64,58 +50,31 @@ class LDRoadSignCanvas(
         }
 
         // Backgrounds
-        g2.color = themeColor
-        g2.fillRect(0, startY, width, 463)
 
         g2.color = Color.WHITE
-        g2.fillRect(0, startY + 463, width, 154)
+        g2.fillRect(0, y, width, 640)
+
+        g2.color = themeColor
+        g2.fillRect(40, y + 40, width - 80, 480 - 40)
+
+        g2.color = Color.WHITE
 
         // Chinese Road Name
         g2.font = Font(AppConfigs.RoadSign.fontCN, Font.BOLD, 300)
         g2.drawAlignedString(cnRoadName, width / 2, cnNameTextY, 1)
 
-        // Arrows (Or circle)
-        val leftIsArrow = type == 0 || atRow == 1
-        val rightIsArrow = type == 0 || atRow == 0
-
-        val leftTextX = if (leftIsArrow) {
-            leftX + 18
-        } else {
-            leftX
-        }
-        val rightTextX = if (rightIsArrow) {
-            rightX - 18
-        } else {
-            rightX
-        }
-        if (leftIsArrow) {
-            drawArrowAt(
-                centerX = leftX,
-                centerY = centerY,
-                isLeft = true
-            )
-        } else {
-            g2.fillOval(
-                leftX - 88,
-                centerY - 88,
-                177,
-                177
-            )
-        }
-        if (rightIsArrow) {
-            drawArrowAt(
-                centerX = rightX,
-                centerY = centerY,
-                isLeft = false
-            )
-        } else {
-            g2.fillOval(
-                rightX - 88,
-                centerY - 88,
-                177,
-                177
-            )
-        }
+        val leftTextX = leftX + 18
+        val rightTextX = rightX - 18
+        drawArrowAt(
+            centerX = leftX,
+            centerY = centerY,
+            isLeft = true
+        )
+        drawArrowAt(
+            centerX = rightX,
+            centerY = centerY,
+            isLeft = false
+        )
 
         // English Road Name
         g2.color = themeColor
@@ -124,26 +83,26 @@ class LDRoadSignCanvas(
 
         // Direction Text
         g2.drawAlignedString(
-            dirText[((atRow + type) * 2 + 1) % 4],
-            leftX,
+            dirText[(way * 2 + 1) % 4],
+            leftTextX,
             enCenterY,
             1
         )
         g2.drawAlignedString(
-            dirText[((atRow + type) * 2 + 3) % 4],
-            rightX,
+            dirText[(way * 2 + 3) % 4],
+            rightTextX,
             enCenterY,
             1
         )
         g2.font = Font(AppConfigs.RoadSign.fontCN, Font.BOLD, 100)
         g2.drawAlignedString(
-            dirText[((atRow + type) * 2) % 4],
+            dirText[(way * 2) % 4],
             leftTextX,
             cnDirTextY,
             1
         )
         g2.drawAlignedString(
-            dirText[((atRow + type) * 2 + 2) % 4],
+            dirText[(way * 2 + 2) % 4],
             rightTextX,
             cnDirTextY,
             1

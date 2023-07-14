@@ -1,10 +1,10 @@
 package top.candytechmc.lindongsigngenerator.app.vc
 
+import org.ini4j.Ini
 import top.candytechmc.lindongsigngenerator.arch.io.FileHelper
 import top.candytechmc.lindongsigngenerator.arch.io.IniEntry
 import top.candytechmc.lindongsigngenerator.arch.io.IniHelper
 import top.candytechmc.lindongsigngenerator.arch.io.IniHelper.add
-import org.ini4j.Ini
 import java.io.File
 
 /**
@@ -76,12 +76,12 @@ object VCHelper {
         ini.add(
             "RoadSign",
             "RSOutputWidth",
-            "2592"
+            "2560"
         )
         ini.add(
             "RoadSign",
             "RSOutputHeight",
-            "1266"
+            "1280"
         )
     }
 

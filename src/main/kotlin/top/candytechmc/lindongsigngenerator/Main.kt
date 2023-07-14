@@ -28,31 +28,22 @@ fun main() {
         println("正在生成第 ${index + 1} / $size 个 （${roadData.nameCN}）")
         val canvas1 = LDRoadSignCanvas(
             roadData = roadData,
-            type = 0
+            way = 0
         )
         val canvas2 = LDRoadSignCanvas(
             roadData = roadData,
-            type = 1
-        )
-        val canvas3 = LDRoadSignCanvas(
-            roadData = roadData,
-            type = 2
+            way = 1
         )
 
         val fileRoadName = roadData.nameEN.replace(" ", "").lowercase()
 
         canvas1.outputTo(
-            file = File("output/lupai_${fileRoadName}.png"),
+            file = File("output/lupai_${fileRoadName}_way1.png"),
             scaleWidth = AppConfigs.RoadSign.outputWidth,
             scaleHeight = AppConfigs.RoadSign.outputHeight
         )
         canvas2.outputTo(
-            file = File("output/lupai_${fileRoadName}_${if (roadData.direction == 0) "e" else "n"}.png"),
-            scaleWidth = AppConfigs.RoadSign.outputWidth,
-            scaleHeight = AppConfigs.RoadSign.outputHeight
-        )
-        canvas3.outputTo(
-            file = File("output/lupai_${fileRoadName}_${if (roadData.direction == 0) "w" else "s"}.png"),
+            file = File("output/lupai_${fileRoadName}_way2.png"),
             scaleWidth = AppConfigs.RoadSign.outputWidth,
             scaleHeight = AppConfigs.RoadSign.outputHeight
         )
